@@ -1,0 +1,137 @@
+@import "index";
+#app {
+	.out-wrap .el-button--text{
+		padding: 0;
+	}
+	.el-pagination{
+		color: @contentColor;
+		font-weight: normal;
+	}
+	.el-button{
+		padding: 8px 18px;
+	}
+	.el-button [class*=el-icon-]+span{
+		padding-left: 0;
+		margin-left: 0;
+	}
+	.left-side .el-menu{
+		border-right: 0px;
+	}
+	.el-main{
+		padding: 16px;
+	}
+	.el-header{
+		padding: 0;
+	}
+	.el-header{
+		height: 64px!important;
+		background:rgba(255,255,255,1);
+		box-shadow:0px 2px 6px 0px rgba(6,0,1,0.1);
+		
+	}
+	.el-table, .el-table__expanded-cell{
+		background-color:#fff ;
+	}
+	.el-pagination{
+	text-align: right;
+	}
+	//分页区域
+	.paga-part-block{
+		.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li{
+			min-width: 20px;
+			border-radius: 10px;
+		}
+		.el-pager li{
+			 height: 20px;
+			 line-height: 20px;
+		 }
+		.el-pagination button, .el-pagination span:not([class*=suffix]){
+			height: 20px;
+			line-height: 20px;
+		}
+		.el-input--suffix{
+			margin-top: -10px;
+		}
+		
+	}
+	
+}
+#body{
+	.el-select-dropdown__item.hover, .el-select-dropdown__item:hover{
+		background-color: @normalColor!important;
+		color: @whiteColor;
+	}
+	.el-select-dropdown__item.selected{
+		color: @whiteColor;
+		font-weight: normal;
+		background-color: @normalColor;
+	}
+	//修改弹框的样式
+	.el-dialog__header{
+		border-radius: 4px;
+		text-align: left;
+		height: 40px;
+		background: @dividerLineColor;
+		box-sizing: border-box;
+		padding: 10px 16px 0 20px;
+	}
+	.el-dialog__headerbtn{
+		top: 12px;
+		right: 14px;
+		color: @activeColor;
+		font-weight: bold;
+	}
+	.el-dialog__headerbtn .el-dialog__close{
+		color: @activeColor;
+		font-weight: bold;
+	}
+	.el-dialog__headerbtn .el-dialog__close:hover{
+		color:@hoverColor;
+	}
+	.el-dialog__body{
+		padding: 0;
+		text-align: left;
+	}
+	.el-dialog__footer{
+		border-radius: 4px;
+		.el-button{
+			width: 86px;
+		}
+	}
+	.el-form-item__content{
+		margin-left: 0px!important;
+	}
+	.el-form-item__label{
+		font-weight: bold;
+		color:@titleColor;
+	}
+	 .tankuang-part .el-form-item__error{
+		 top: 153px;
+		 left: 215px;
+	}
+	.el-form-item__error{
+		left: 80px;
+	}
+	.el-input__inner{
+		height: 32px;
+		//border: 1px solid #d9d9d9;
+	}
+	.tankuang-part .el-input__inner{
+		height: 36px;
+		//border: 1px solid #d9d9d9;
+	}
+	.el-button{
+		border-radius: 2px;
+		margin-left:8px;
+	}
+	.table-class .el-button{
+		margin-left:0px;
+	}
+	.el-select-dropdown__item{
+		text-indent: 20px;
+		padding: 0;
+	}
+	.el-input__icon{
+		line-height: 32px;
+	}
+}

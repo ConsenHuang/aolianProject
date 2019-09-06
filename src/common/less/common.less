@@ -1,0 +1,180 @@
+@import "index.less";
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.clearfix:after{
+	display: block;
+	clear: both;
+	content: "";
+}
+.text-left{
+	text-align: left;
+}
+.posi-re{
+	position: relative;
+}
+//项目复用样式
+#body {
+	//1:字体
+	//主标题
+	.aolian-main-heading{
+		font-size: 16px;
+		font-weight: bold;
+		color: @titleColor;
+	}
+	//弹窗标题
+	.aolian-bounced-title{
+		font-size: 16px;
+		font-weight: normal;
+	}
+	//分模块标题{
+	.aolian-module-title{
+		font-size: 14px;
+		font-weight: bold;
+	}
+	//正文内容
+	.aolian-body-content{
+		font-size: 14px;
+		font-weight: normal;
+	}
+	//提示说明信息
+	.aolian-prompt-information{
+		font-size: 12px;
+		font-weight: normal;
+		color: @auxiliaryMsgColor;
+	}
+	
+	
+	//间距样式
+	.aolian-small-margin-l{
+		margin-left: 8px;
+	}
+	.aolian-small-margin-t{
+		margin-top: 8px;
+	}
+	.aolian-small-margin-r{
+		margin-right: 8px;
+	}
+	.aolian-small-margin-b{
+		margin-bottom: 8px;
+	}
+	//中等间距
+	.aolian-middle-margin-l{
+		margin-left: 16px;
+	}
+	.aolian-middle-margin-t{
+		margin-top: 16px;
+	}
+	.aolian-middle-margin-r{
+		margin-right: 16px;
+	}
+	.aolian-middle-margin-b{
+		margin-bottom: 16px;
+	}
+	
+	//大间距
+	.aolian-big-margin-l{
+		margin-left: 32px;
+	}
+	.aolian-big-margin-t{
+		margin-top: 32px;
+	}
+	.aolian-big-margin-r{
+		margin-right: 32px;
+	}
+	.aolian-big-margin-b{
+		margin-bottom: 32px;
+	}
+	
+	//padding小间距
+	.aolian-small-padding-l{
+		padding-left: 8px;
+	}
+	.aolian-small-padding-r{
+		padding-right: 8px;
+	}
+	.aolian-small-padding-t{
+		padding-top: 8px;
+	}
+	.aolian-small-padding-b{
+		padding-bottom: 8px;
+	}
+	
+	//中等间距
+	.aolian-middle-padding-l{
+		padding-left: 16px;
+	}
+	.aolian-middle-padding-r{
+		padding-right: 16px;
+	}
+	.aolian-middle-padding-t{
+		padding-top: 16px;
+	}
+	.aolian-middle-padding-b{
+		padding-bottom: 16px;
+	}
+	
+	//大间距
+	
+	.aolian-big-padding-l{
+		padding-left: 32px;
+	}
+	.aolian-big-padding-r{
+		padding-right: 32px;
+	}
+	.aolian-big-padding-t{
+		padding-top: 32px;
+	}
+	.aolian-big-padding-b{
+		padding-bottom: 32px;
+	}
+	.inp-350-36{
+		width: 350px;
+		height: 36px;
+		box-sizing: border-box;
+	}
+	.inp-260-32{
+		width: 260px;
+		height: 32px;
+		box-sizing: border-box;
+	}
+	.mb40{
+		margin-bottom: 40px;
+	}
+	 .mb30{
+		 margin-bottom: 30px;
+	 }
+	.mb25{
+		margin-bottom: 25px;
+	}
+	.ml30{
+		margin-left: 25px;
+	}
+	.formPart{
+		padding-left: 78px;
+	}
+	.line-each-form{
+	
+	}
+	.wrap_page_3 .first-button{
+		margin-left: 0px;
+	}
+	.whit-btn-color{
+		color: @titleColor;
+	}
+	.wearning-color{
+		color: @errorColor;
+	}
+	.ml30{
+		position: absolute;
+		left: 78px;
+		top: 30px;
+	}
+	.line-each-form .form-textarea-class, .line-each-form .el-textarea__inner{
+		width: 350px;
+		height: 88px;
+	}
+}
