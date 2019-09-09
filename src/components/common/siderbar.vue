@@ -10,38 +10,40 @@
             background-color="#2F3542"
             text-color="#fff"
             active-text-color="#fff"
+            router="router"
     >
         <div class="logo">
             <span class="iconfont icon-logo site-logo"></span>
         </div>
-        <el-menu-item index="2">
+        <el-menu-item index="/user">
             <i class="iconfont icon-main colort font-size-zidingyi"></i>
-        </el-menu-item>
-        <el-menu-item index="3">
-            <!--<i class="iconfont icon-icon-yonghu colort font-size-zidingyi"></i>-->
-            <i class="iconfont icon-yonghu colort font-size-zidingyi"></i>
             <span slot="title">用户</span>
         </el-menu-item>
-        <el-menu-item index="5">
+        <el-menu-item index="/authorization">
+            <!--<i class="iconfont icon-icon-yonghu colort font-size-zidingyi"></i>-->
+            <i class="iconfont icon-yonghu colort font-size-zidingyi"></i>
+            <span slot="title">授权</span>
+        </el-menu-item>
+        <el-menu-item index="/IBC">
             <i class="iconfont icon-role colort font-size-zidingyi"></i>
-            <span slot="title">密保</span>
+            <span slot="title">IBC</span>
         </el-menu-item>
-        <el-menu-item index="6">
+        <el-menu-item index="/NTLS">
             <i class="iconfont icon-guanli colort font-size-zidingyi"></i>
-            <span slot="title">分类</span>
+            <span slot="title">NTLS</span>
         </el-menu-item>
-        <el-menu-item index="7">
+        <el-menu-item index="/log">
             <i class="iconfont icon-rizhi colort font-size-zidingyi"></i>
             <span slot="title">日志</span>
         </el-menu-item>
-        <el-menu-item index="8">
+        <el-menu-item index="/statistics">
             <i class="iconfont icon-tongji colort font-size-zidingyi"></i>
-            <span slot="title">全球</span>
+            <span slot="title">统计</span>
         </el-menu-item>
     </el-menu>
-        <div class="system-icon posi-re">
+        <div class="system-icon posi-re" ref="sysicon" @mouseenter="seeMenu" @mouseover="seeMenu" @mouseleave="hiddenMenu">
             <i class="iconfont icon-xitong colort font-size-zidingyi"></i>
-            <div class="sys-menu-list">
+            <div class="sys-menu-list" ref="menuList" v-show="showMenu" @mouseleave="hiddenMenu">
                 <ul>
                     <li @click="changeIndex(1)" class="home3-menu" :class="{'li-active':activeIndex == '1'}">
                         系统配置
@@ -71,40 +73,59 @@
         name: 'siderbar',
         data () {
             return{
+                router:true,
+                showMenu:false,
                 isCollapse: true,
-                activeIndex:'1'
+                activeIndex:'1',
+                T:null
             }
         },
         methods:{
+            seeMenu(){
+                this.showMenu = true
+                clearTimeout(this.T)
+            },
+            hiddenMenu(){
+                var that = this
+               this.T= setTimeout(function () {
+                   that.showMenu = false
+               },500)
+            },
             changeIndex(index){
                 this.activeIndex = index;
                 switch(index) {
                     case 1:
-                        this.$store.dispatch('level3menu/checkout',{products:'传出去'});
-                        this.$router.push({ path:'/parameter_configuration',query:{'rdMenu':'system_configuration_group'}});
+                        // 系统配置
+                        this.$store.dispatch('level3menu/setMenu',{index:index});
+                        this.$router.push({ path:'/parameter_configuration'});
                         break;
                     case 2:
-                        this.$router.push({ path:'/net_configuration',query:{'rdMenu':'data_group'}});
+                        // 基础数据
+                        this.$store.dispatch('level3menu/setMenu',{index:index});
+                        this.$router.push({ path:'/organization_type'});
                         break;
                     case 3:
-                        this.$router.push({ path:'/resources_monitoring',query:{'rdMenu':'limits_group'}});
+                        // 权限管理
+                        this.$router.push({ path:'/authority_management'});
                         break;
                     case 4:
-                        this.$router.push({ path:'/sms_configuration',query:{'rdMenu':'organization_group'}});
+                        // 组织管理
+                        this.$router.push({ path:'/organizational_management'});
                         break;
                     case 5:
-                        this.$router.push({ path:'/email_configuration',query:{'rdMenu':'admin_group'}});
+                        // 管理员管理
+                        this.$router.push({ path:'/administrator_management'});
                         break;
                     default:
                 }
             },
             send(){
-                this.$post_json(
-                    '/api',
-                    {a:1}
-                ).then(()=>{
-
-                })
+                // this.$post_json(
+                //     '/api',
+                //     {a:1}
+                // ).then(()=>{
+                //
+                // })
             },
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);

@@ -1,102 +1,123 @@
 <template>
-    <div class="wrap_page_3" ref="page3">
-        <div class='table-header-part'>
-            <div class="text-left aolian-middle-margin-b">
-            <el-button
-                    type="primary aolian-body-content"
-                    icon="el-icon-plus"
-                    @click="newOrganizationType"
-                    class="first-button"
-            >
-                新增
-            </el-button>
-        </div>
-        </div>
-        <el-table
-                :row-style="tableRowClass"
-                :header-cell-style="headerTableClass"
-                :data="tableData"
-                class="table-class"
-                style="width: 100%">
-            <el-table-column
-                    type="selection"
-                    width="30">
-            </el-table-column>
-            <el-table-column
-                    prop="date"
-                    label="组织类型"
-                    min-width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="name"
-                    label="状态"
-                    min-width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="address"
-                    label="操作">
-                <template slot-scope="scope">
+  <div class="wrap_page_3" ref="page3">
+    <div class='table-header-part'>
+      <div class="text-left aolian-middle-margin-b">
+        <el-button
+                type="primary aolian-body-content"
+                icon="el-icon-plus"
+                @click="newOrganizationType"
+                class="first-button"
+        >
+          新增
+        </el-button>
+      </div>
+    </div>
+    <el-table
+            :row-style="tableRowClass"
+            :header-cell-style="headerTableClass"
+            :data="tableData"
+            class="table-class"
+            style="width: 100%">
+      <el-table-column
+              type="selection"
+              width="30">
+      </el-table-column>
+      <el-table-column
+              prop="date"
+              label="组织类型"
+              min-width="180">
+      </el-table-column>
+      <el-table-column
+              prop="name"
+              label="状态"
+              min-width="180">
+      </el-table-column>
+      <el-table-column
+              prop="address"
+              label="操作">
+        <template slot-scope="scope">
                     <span class="aolian-middle-margin-r" @click="handleEdit(scope.$index, scope.row)">
                         <el-button type="text">编辑</el-button>
                     </span>
-                    <span @click="handleEdit(scope.$index, scope.row)">
+          <span @click="handleForbidden(scope.$index, scope.row)">
                         <el-button type="text">禁用</el-button>
                     </span>
-                </template>
-            </el-table-column>
-        </el-table>
-        <div class="pagapart paga-part-block">
-            <el-pagination
-                    background
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page="currentPage4"
-                    :page-sizes="[100, 200, 300, 400]"
-                    :page-size="100"
-                    layout="total, prev, pager, next,slot,sizes"
-                    :total="400">
-                <span class="">共100页</span>
-            </el-pagination>
-        </div>
+        </template>
+      </el-table-column>
+    </el-table>
+    <div class="pagapart paga-part-block">
+      <el-pagination
+              background
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="currentPage4"
+              :page-sizes="[100, 200, 300, 400]"
+              :page-size="100"
+              layout="total, prev, pager, next,slot,sizes"
+              :total="400">
+        <span class="">共100页</span>
+      </el-pagination>
+    </div>
 
-        <!--弹框部分-->
-        <el-dialog
-                class="tankuang-part"
-                title="提示"
-                :visible.sync="dialogVisible"
-                width="700px"
-                :before-close="handleClose">
+    <!--弹框部分-->
+    <el-dialog
+            class="tankuang-part"
+            title="提示"
+            :visible.sync="dialogVisible"
+            width="700px"
+            :before-close="handleClose">
             <span slot="title" class="aolian-main-heading">
-                {{changeWord}}组织类型
+                {{changeWord}}岗位级别
             </span>
-            <div class="formPart">
-                <div class="mb25"></div>
+      <div class="formPart">
+        <div class="mb25"></div>
 
-                <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                    <div class="line-each-form mb40">
-                        <el-form-item label="组织类型 : " prop="pass">
-                            <el-input  placeholder="请输入组织类型" class="inp-350-36"  v-model="ruleForm.pass" autocomplete="off"></el-input><br/>
-                            <span class="aolian-prompt-information ml30">支持英文、中文、数字，2-15数字</span>
-                        </el-form-item>
+        <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <div class="line-each-form mb40">
+            <el-form-item label="组织类型 : " prop="pass">
+              <el-input  placeholder="请输入岗位级别" class="inp-350-36"  v-model="ruleForm.pass" autocomplete="off"></el-input><br/>
+              <span class="aolian-prompt-information ml30">支持英文、中文、数字，2-15数字</span>
+            </el-form-item>
 
-                    </div>
-                    <div class="line-each-for mb30">
-                            <el-form-item label="状态 : " prop="resource">
-                                <el-radio-group v-model="ruleForm.resource">
-                                    <el-radio label="1">启用</el-radio>
-                                    <el-radio label="2">禁用</el-radio>
-                                </el-radio-group>
-                        </el-form-item>
-                    </div>
-                </el-form>
-            </div>
-            <span slot="footer" class="dialog-footer">
+          </div>
+          <div class="line-each-for mb30">
+            <el-form-item label="状态 : " prop="resource">
+              <el-radio-group v-model="ruleForm.resource">
+                <el-radio label="1">启用</el-radio>
+                <el-radio label="2">禁用</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </div>
+        </el-form>
+      </div>
+      <span slot="footer" class="dialog-footer">
                 <span class="wearning-color">请输入密码</span>
                 <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
                  <el-button @click="resetForm('ruleForm')">取消</el-button>
             </span>
-        </el-dialog>
-    </div>
+    </el-dialog>
+
+    <!--禁用弹框-->
+    <el-dialog
+            class="tankuang-part"
+            title="提示"
+            :visible.sync="dialogVisible2"
+            width="700px"
+            :before-close="handleClose2">
+            <span slot="title" class="aolian-main-heading">
+                提示
+            </span>
+      <div class="formPart">
+        <div class="mb25 mt50">
+          禁用后会同时禁用其下级组织，组织下的用户也将被禁用；确定要禁用该组织吗?
+        </div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="submitForm('ruleForm')">禁用</el-button>
+                 <el-button @click="resetForm('ruleForm')">取消</el-button>
+            </span>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
@@ -130,6 +151,7 @@
                 }
             };
             return {
+                dialogVisible2:false,
                 input:'',
                 changeWord:'新增',
                 ruleForm: {
@@ -179,6 +201,9 @@
                 console.log(index,data)
                 this.changeWord = '编辑'
             },
+            handleForbidden(index,data){
+                this.dialogVisible2 = true
+            },
             sendMsg(){
                 this.$post_json(
                     '/data2'
@@ -205,6 +230,9 @@
             },
             handleClose() {
                 this.dialogVisible = false
+            },
+            handleClose2() {
+                this.dialogVisible2 = false
             },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
@@ -234,23 +262,23 @@
 </script>
 
 <style scoped lang="less">
-    .ml30{
-        position: absolute;
-        left: 56px;
-        top: 30px;
-    }
-    .icon-add:before{
-        color: transparent;
-    }
-    .icon-add-aolian{
-        font-size: 30px;
-    }
-    .pagapart{
-        margin-top: 40px;
-    }
-    .table-color{
-    }
-.wrap_page_3{
+  .ml30{
+    position: absolute;
+    left: 56px;
+    top: 30px;
+  }
+  .icon-add:before{
+    color: transparent;
+  }
+  .icon-add-aolian{
+    font-size: 30px;
+  }
+  .pagapart{
+    margin-top: 40px;
+  }
+  .table-color{
+  }
+  .wrap_page_3{
     width: 1637px;
     height: 857px;
     padding: 24px 15px 0px 16px;
@@ -258,22 +286,22 @@
     margin-left: 16px;
     box-sizing: border-box;
     background:rgba(255,255,255,1);
-}
-.xinzeng{
+  }
+  .xinzeng{
     display: inline-block;
     vertical-align: middle;
     box-sizing: border-box;
     padding: 0 20px;
     height: 32px;
     background: @colorButtonMsg;
-    color: #ffffff;
+    color: @whiteColor;
     border-radius: 2px;
-}
-.add-word{
+  }
+  .add-word{
     line-height: 20px;
-}
-.add-icon{
+  }
+  .add-icon{
     font-size: 20px;
     margin-right: 5px;
-}
+  }
 </style>

@@ -4,10 +4,10 @@
         </div>
             <div ><div class="third-menu left">
                 <div class="home3-title">
-                    基础数据
+                    {{currentMenu.titleWorld}}
                 </div>
                 <ul>
-                    <li v-for="(value,key) of menuList" :key="key" @click="changeIndex(value.index)" class="home3-menu" :class="{'li-active':activeIndex == value.index}">
+                    <li v-for="(value,key) of currentMenu.titleList" :key="key" @click="changeIndex(value.index,value)" class="home3-menu" :class="{'li-active':activeIndex == value.index}">
                         {{value.title}}
                     </li>
                 </ul>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+    import { mapState, mapGetters} from 'vuex'
     export default {
         name: "home",
         data(){
@@ -33,17 +34,30 @@
             }
         },
         methods:{
-            changeIndex(index){
+            changeIndex(index,value){
                 this.activeIndex = index
-                switch(index) {
-                    case 1:
-                        this.$router.push({ path:'/organization_type'});
-                        break;
-                    case 3:
-                        this.$router.push({ path:'/position_management'});
-                        break;
-                    default:
-                }
+                this.$router.push({ path:value.path});
+            }
+        },
+        computed:{
+            ...mapState({
+                currentMenu: state => state.level3menu.menu.currentMenu
+                // checkoutStatus: state => state.cart.checkoutStatus
+            }),
+            ...mapGetters('level3menu', ['cartProducts']),
+            // 当使用多模块的时候，要分别映射
+        },
+        created(){
+            this.$store.dispatch('level3menu/setMenu',{index:1});
+        },
+        mounted(){
+        },
+        watch:{
+            currentMenu:{
+                handler:function () {
+                    this.activeIndex = 1
+                },
+                deep:true
             }
         }
     }

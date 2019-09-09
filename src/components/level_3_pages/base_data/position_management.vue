@@ -88,7 +88,7 @@
                 style="width: 100%">
             <el-table-column
                     type="selection"
-                    width="28">
+                    width="30">
             </el-table-column>
             <el-table-column
                     prop="date"

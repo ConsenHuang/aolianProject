@@ -58,11 +58,79 @@ const routes = [
                         name: 'position_management',
                         component: resolve => require(['@/components/level_3_pages/base_data/position_management'], resolve)
                     },
+                    {
+                        // 岗位级别
+                        path: '/level_of_position ',
+                        name: 'level_of_position ',
+                        component: resolve => require(['@/components/level_3_pages/base_data/level_of_position '], resolve)
+                    },
+                    {
+                        // 岗位类型
+                        path: '/position_type',
+                        name: 'position_type',
+                        component: resolve => require(['@/components/level_3_pages/base_data/position_type'], resolve)
+                    },
+
 
 
                 ],
 
-            }
+
+            },
+            {
+                // 用户管理
+                path: '/user',
+                name: 'user',
+                component: resolve => require(['@/components/level_2_pages/user/user'], resolve)
+            },
+            {
+                // 授权
+                path: '/authorization',
+                name: 'authorization',
+                component: resolve => require(['@/components/level_2_pages/authorization/authorization'], resolve)
+            },
+            {
+                // IBC
+                path: '/IBC',
+                name: 'IBC',
+                component: resolve => require(['@/components/level_2_pages/IBC/IBC'], resolve)
+            },
+            {
+                // NTLS
+                path: '/NTLS',
+                name: 'NTLS',
+                component: resolve => require(['@/components/level_2_pages/NTLS/NTLS'], resolve)
+            },
+            {
+                // 日志
+                path: '/log',
+                name: 'log',
+                component: resolve => require(['@/components/level_2_pages/log/log'], resolve)
+            },
+            {
+                // 统计
+                path: '/statistics',
+                name: 'statistics',
+                component: resolve => require(['@/components/level_2_pages/statistics/statistics'], resolve)
+            },
+            {
+                // 权限管理
+                path: '/authority_management',
+                name: 'authority_management',
+                component: resolve => require(['@/components/level_2_pages/authority_management/authority_management'], resolve)
+            },
+            {
+                // 组织管理
+                path: '/organizational_management',
+                name: 'organizational_management',
+                component: resolve => require(['@/components/level_2_pages/organizational_management/organizational_management'], resolve)
+            },
+            {
+                // 管理员管理
+                path: '/administrator_management',
+                name: 'administrator_management',
+                component: resolve => require(['@/components/level_2_pages/administrator_management/administrator_management'], resolve)
+            },
         ]
     },
     // {
