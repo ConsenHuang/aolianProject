@@ -18,6 +18,13 @@ const state = {
                 {'title': '岗位级别',index:3,path:'/level_of_position '},
                 {'title': '岗位类型',index:4,path:'/position_type'}]
         },
+        'menuThree': {
+            'titleWorld': '认证授权',
+            'titleList': [
+                {'title': '认证配置',index:1,path:'/authentication_configuration'},
+                {'title': '应用管理',index:2,path:'/application_management'},
+                {'title': '授权管理',index:3,path:'/authorization_management'}]
+        },
         'currentMenu':null
     }
 }
@@ -60,8 +67,10 @@ const mutations = {
     setMenu(state, {index}) {
         if (index == 1){
             state.menu.currentMenu = state.menu.menuOne
-        } else{
+        } else if(index == 2){
             state.menu.currentMenu = state.menu.menuTow
+        }else if(index == 3){
+            state.menu.currentMenu = state.menu.menuThree
         }
         console.log('看看change了吗')
     }

@@ -112,7 +112,7 @@
                     <span class="aolian-middle-margin-r" @click="handleEdit(scope.$index, scope.row)">
                         <el-button type="text">编辑</el-button>
                     </span>
-                    <span @click="handleEdit(scope.$index, scope.row)">
+                    <span @click="handleForbidden(scope.$index, scope.row)">
                         <el-button type="text">禁用</el-button>
                     </span>
                 </template>
@@ -204,6 +204,25 @@
                  <el-button @click="resetForm('ruleForm')">取消</el-button>
             </span>
         </el-dialog>
+        <el-dialog
+                class="tankuang-part"
+                title="提示"
+                :visible.sync="dialogVisible2"
+                width="700px"
+                :before-close="handleClose2">
+            <span slot="title" class="aolian-main-heading">
+                提示
+            </span>
+            <div class="formPart">
+                <div class="mb25 mt50">
+                    禁用后会同时禁用其下级组织，组织下的用户也将被禁用；确定要禁用该组织吗?
+                </div>
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary">禁用</el-button>
+                 <el-button @click="resetForm('ruleForm')">取消</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -238,6 +257,7 @@
                 }
             };
             return {
+                dialogVisible2:false,
                 textarea:'',
                 input:'',
                 options: [{
@@ -300,6 +320,9 @@
             }
         },
         methods:{
+            handleForbidden(index,data){
+                this.dialogVisible2 = true
+            },
             handleEdit(index,data){
                 this.dialogVisible = true
                 console.log(index,data)
@@ -331,6 +354,9 @@
             },
             handleClose() {
                 this.dialogVisible = false
+            },
+            handleClose2() {
+                this.dialogVisible2 = false
             },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);

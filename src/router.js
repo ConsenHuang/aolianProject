@@ -70,12 +70,25 @@ const routes = [
                         name: 'position_type',
                         component: resolve => require(['@/components/level_3_pages/base_data/position_type'], resolve)
                     },
-
-
-
+                    {
+                        // 应用管理
+                        path: '/application_management',
+                        name: 'application_management',
+                        component: resolve => require(['@/components/level_3_pages/certificate_authority/application_management'], resolve)
+                    },
+                    {
+                        // 认证配置
+                        path: '/authentication_configuration',
+                        name: 'authentication_configuration',
+                        component: resolve => require(['@/components/level_3_pages/certificate_authority/authentication_configuration'], resolve)
+                    },
+                    {
+                        // 授权管理
+                        path: '/authorization_management',
+                        name: 'authorization_management',
+                        component: resolve => require(['@/components/level_3_pages/certificate_authority/authorization_management'], resolve)
+                    },
                 ],
-
-
             },
             {
                 // 用户管理

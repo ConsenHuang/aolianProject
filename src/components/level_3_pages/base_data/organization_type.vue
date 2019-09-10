@@ -39,7 +39,7 @@
                     <span class="aolian-middle-margin-r" @click="handleEdit(scope.$index, scope.row)">
                         <el-button type="text">编辑</el-button>
                     </span>
-                    <span @click="handleEdit(scope.$index, scope.row)">
+                    <span @click="handleForbidden(scope.$index, scope.row)">
                         <el-button type="text">禁用</el-button>
                     </span>
                 </template>
@@ -76,7 +76,7 @@
                     <div class="line-each-form mb40">
                         <el-form-item label="组织类型 : " prop="pass">
                             <el-input  placeholder="请输入组织类型" class="inp-350-36"  v-model="ruleForm.pass" autocomplete="off"></el-input><br/>
-                            <span class="aolian-prompt-information ml30">支持英文、中文、数字，2-15数字</span>
+                            <span class="aolian-prompt-information ml30">支持英文、中文、数字，2-15字符</span>
                         </el-form-item>
 
                     </div>
@@ -91,8 +91,27 @@
                 </el-form>
             </div>
             <span slot="footer" class="dialog-footer">
-                <span class="wearning-color">请输入密码</span>
+                <span class="wearning-color">{{errorWord}}</span>
                 <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+                 <el-button @click="resetForm('ruleForm')">取消</el-button>
+            </span>
+        </el-dialog>
+        <el-dialog
+                class="tankuang-part"
+                title="提示"
+                :visible.sync="dialogVisible2"
+                width="700px"
+                :before-close="handleClose2">
+            <span slot="title" class="aolian-main-heading">
+                提示
+            </span>
+            <div class="formPart">
+                <div class="mb25 mt50">
+                    禁用后会同时禁用其下级组织，组织下的用户也将被禁用；确定要禁用该组织吗?
+                </div>
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="submitForm('ruleForm')">禁用</el-button>
                  <el-button @click="resetForm('ruleForm')">取消</el-button>
             </span>
         </el-dialog>
@@ -103,33 +122,28 @@
     export default {
         name: "organization_type",
         data() {
-            var checkAge = (rule, value, callback) => {
-                if (!value) {
-                    return callback(new Error('年龄不能为空'));
-                }
-                setTimeout(() => {
-                    if (!Number.isInteger(value)) {
-                        callback(new Error('请输入数字值'));
-                    } else {
-                        if (value < 18) {
-                            callback(new Error('必须年满18岁'));
-                        } else {
-                            callback();
-                        }
-                    }
-                }, 1000);
-            };
             var validatePass = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error(' '));
-                } else {
-                    if (this.ruleForm.checkPass !== '') {
-                        this.$refs.ruleForm.validateField('checkPass');
-                    }
+                }
+                var regex = /^[0-9a-zA-Z\u4e00-\u9fa5]{2,15}$/;
+                // 匹配中文，数字，字母 2-15字符
+                var res = regex.test(value);
+                if(res){
                     callback();
+                    this.errorWord = ' '
+                } else{
+                    if(value === ''){
+                        this.errorWord = '输入数据不能为空'
+                        return
+                    }
+                    callback(new Error(' '));
+                    this.errorWord = '请输入正确的格式'
                 }
             };
             return {
+                dialogVisible2:false,
+                errorWord:'',
                 input:'',
                 changeWord:'新增',
                 ruleForm: {
@@ -140,10 +154,7 @@
                 },
                 rules: {
                     pass: [
-                        { validator: validatePass, trigger: 'blur' }
-                    ],
-                    age: [
-                        { validator: checkAge, trigger: 'blur' }
+                        { validator: validatePass, trigger: ['blur','change'] }
                     ]
                 },
                 dialogVisible: false,
@@ -174,6 +185,9 @@
             }
         },
         methods:{
+            handleForbidden(index,data){
+                this.dialogVisible2 = true
+            },
             handleEdit(index,data){
                 this.dialogVisible = true
                 console.log(index,data)
@@ -205,6 +219,9 @@
             },
             handleClose() {
                 this.dialogVisible = false
+            },
+            handleClose2() {
+                this.dialogVisible2 = false
             },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);

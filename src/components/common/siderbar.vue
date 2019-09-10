@@ -19,7 +19,7 @@
             <i class="iconfont icon-main colort font-size-zidingyi"></i>
             <span slot="title">用户</span>
         </el-menu-item>
-        <el-menu-item index="/authorization">
+        <el-menu-item index="/authentication_configuration" @click="changeRouter">
             <!--<i class="iconfont icon-icon-yonghu colort font-size-zidingyi"></i>-->
             <i class="iconfont icon-yonghu colort font-size-zidingyi"></i>
             <span slot="title">授权</span>
@@ -81,6 +81,10 @@
             }
         },
         methods:{
+            changeRouter(){
+                this.$store.dispatch('level3menu/setMenu',{index:3});
+                console.log('[[[[[[')
+            },
             seeMenu(){
                 this.showMenu = true
                 clearTimeout(this.T)
