@@ -5,6 +5,9 @@ import store from './vuex/index'
 import './theme/index.css';
 import './elememt_components'
 import VueCookie from 'vue-cookie';
+import 'element-ui/lib/theme-chalk/base.css';
+import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
+Vue.component(CollapseTransition.name, CollapseTransition)
 
 // 配置生产环境与本地环境请求头
 

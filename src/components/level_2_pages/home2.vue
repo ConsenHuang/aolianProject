@@ -2,7 +2,7 @@
     <div>
         <div class="contents-level-2">
         </div>
-            <div ><div class="third-menu left">
+            <div ><div class="third-menu left" ref="thirdMenu">
                 <div class="home3-title">
                     {{currentMenu.titleWorld}}
                 </div>
@@ -37,6 +37,10 @@
             changeIndex(index,value){
                 this.activeIndex = index
                 this.$router.push({ path:value.path});
+            },
+            changeMenuHeight(){
+                // var contentHeight = document.getElementsByClassName("wrap_page_3")[0].offsetHeight;
+                // this.$refs.thirdMenu.style.height = contentHeight + "px"
             }
         },
         computed:{
@@ -51,6 +55,10 @@
             this.$store.dispatch('level3menu/setMenu',{index:1});
         },
         mounted(){
+            // var that = this
+            // window.addEventListener('resize',function () {
+            //     that.changeMenuHeight()
+            // })
         },
         watch:{
             currentMenu:{

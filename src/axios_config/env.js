@@ -1,7 +1,7 @@
 let baseUrl = '';
 
 if (process.env.NODE_ENV == 'development') {
-    baseUrl = '/api';
+    baseUrl = 'https://192.168.1.70:8443';
     // 本地环境这个一定要设置为空
 
 } else if (process.env.NODE_ENV == 'production') {

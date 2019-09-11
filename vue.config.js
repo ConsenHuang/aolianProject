@@ -23,16 +23,16 @@ module.exports = {
     },
     baseUrl: '/',
     devServer: {
-        proxy: {
-            //配置跨域
-            '/api': {
-                target: "http://localhost:3000",
-                ws:true,
-                changOrigin:true,
-                pathRewrite:{
-                    '^/api':'/'
-                }
-            }
-        }
+        // proxy: {
+        //     //配置跨域
+        //     '/api': {
+        //         target: 'https://192.168.1.70:8443',
+        //         ws:true,
+        //         changOrigin:true,
+        //         pathRewrite:{
+        //             '^/api':'/'
+        //         }
+        //     }
+        // }
     }
 }

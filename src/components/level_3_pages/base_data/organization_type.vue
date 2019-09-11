@@ -269,7 +269,6 @@
     }
 .wrap_page_3{
     width: 1637px;
-    height: 857px;
     padding: 24px 15px 0px 16px;
     background: @whiteColor;
     margin-left: 16px;

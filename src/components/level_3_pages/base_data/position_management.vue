@@ -403,7 +403,6 @@
     }
     .wrap_page_3{
         width: 1637px;
-        height: 857px;
         padding: 24px 15px 0px 16px;
         background: #fff;
         margin-left: 16px;

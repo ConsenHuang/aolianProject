@@ -1,6 +1,7 @@
 import {
     baseUrl, //引入baseUrl
 } from "../axios_config/env";
+import Qs from 'qs'
 import axios2 from 'axios';
 let axios = axios2.create({
     baseURL: baseUrl, // api的base_url
@@ -8,7 +9,11 @@ let axios = axios2.create({
         'Content-Type':'application/json',
         'Authorization':'Bearer 3488c76d-27dd-4dba-a35e-54b20a48f7e0'
     },
-    timeout: 10000 // 请求超时时间
+    timeout: 10000, // 请求超时时间
+    transformRequest: [function (data) {
+        data = Qs.stringify(data);
+        return data;
+    }],
 })
 /**
  * 封装get方法

@@ -165,5 +165,14 @@ const routes = [
 const router =  new Router({
     routes
 });
+router.afterEach((to, from) => {
+    var T = setTimeout(function () {
+        var contentHeight = document.getElementsByClassName("wrap_page_3") ? document.getElementsByClassName("wrap_page_3")[0].offsetHeight : 0
+        console.log(contentHeight)
+        var menuDom = document.getElementsByClassName("third-menu left")[0]
+        menuDom.style.height = contentHeight + "px"
+        clearTimeout(T)
+    })
+})
 
 export default router;
